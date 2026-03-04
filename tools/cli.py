@@ -7,11 +7,23 @@ from mapper import select_signals
 from xml_export import export_config
 
 
-@click.command()
+@click.group()
+def main():
+    """CAN-ROS2 Bridge DBC Mapper Tool."""
+
+
+@main.command()
+def gui():
+    """Launch the graphical mapper interface."""
+    from gui_main import run_gui
+    run_gui()
+
+
+@main.command()
 @click.argument("dbc_file", type=click.Path(exists=True))
 @click.option("-o", "--output", default="config.xml", help="Output XML path")
-def main(dbc_file: str, output: str) -> None:
-    """Map DBC signals to ROS2 topics and generate bridge config XML."""
+def map(dbc_file: str, output: str):
+    """Map DBC signals to ROS2 topics interactively (CLI mode)."""
     db = load_dbc(dbc_file)
     messages = list_messages(db)
     click.echo(f"Loaded {len(messages)} message(s) from {dbc_file}")
@@ -22,6 +34,7 @@ def main(dbc_file: str, output: str) -> None:
         return
 
     export_config(mappings, output)
+    click.echo(f"Config written to {output}")
 
 
 if __name__ == "__main__":
