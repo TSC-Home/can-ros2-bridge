@@ -1,0 +1,80 @@
+name: Build & Release
+
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
+      - name: Build & test
+        working-directory: node
+        run: |
+          cargo build --release
+          cargo test
+
+      - name: Prepare package files
+        run: |
+          mkdir -p dist/usr/bin dist/etc/can-ros2-bridge dist/lib/systemd/system
+          cp node/target/release/can-ros2-bridge dist/usr/bin/
+          cp config/example.xml dist/etc/can-ros2-bridge/config.xml
+          cp systemd/can_ros_bridge.service dist/lib/systemd/system/
+
+      - name: Build .deb (Debian/Ubuntu)
+        env:
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          cp -r dist pkg-deb
+          mkdir -p pkg-deb/DEBIAN
+          VERSION="${REF_NAME#v}"
+          cat > pkg-deb/DEBIAN/control << EOF
+          Package: can-ros2-bridge
+          Version: ${VERSION}
+          Architecture: amd64
+          Maintainer: maintainer
+          Description: CAN to ROS2 bridge
+          EOF
+          dpkg-deb --build pkg-deb can-ros2-bridge_${VERSION}_amd64.deb
+
+      - name: Build .rpm (Fedora)
+        env:
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          sudo apt-get update && sudo apt-get install -y rpm
+          VERSION="${REF_NAME#v}"
+          mkdir -p rpmbuild/{SPECS,BUILDROOT}
+          cp -r dist/* rpmbuild/BUILDROOT/
+          cat > rpmbuild/SPECS/can-ros2-bridge.spec << 'SPEC'
+          Name: can-ros2-bridge
+          Summary: CAN to ROS2 bridge
+          License: MIT
+          SPEC
+          echo "Version: ${VERSION}" >> rpmbuild/SPECS/can-ros2-bridge.spec
+          cat >> rpmbuild/SPECS/can-ros2-bridge.spec << 'SPEC'
+          Release: 1
+          %description
+          CAN to ROS2 bridge for automotive applications.
+          %files
+          /usr/bin/can-ros2-bridge
+          /etc/can-ros2-bridge/config.xml
+          /lib/systemd/system/can_ros_bridge.service
+          SPEC
+          rpmbuild --define "_topdir $(pwd)/rpmbuild" \
+                   --buildroot "$(pwd)/rpmbuild/BUILDROOT" \
+                   -bb rpmbuild/SPECS/can-ros2-bridge.spec
+          cp rpmbuild/RPMS/x86_64/*.rpm .
+
+      - name: Upload Release Assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            *.deb
+            *.rpm
