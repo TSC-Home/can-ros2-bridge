@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Test config: nur VelAndAngPOI und AccHor, NICHT Status/Info/StaticInfo -->
+<bridge>
+    <message id="1536" name="VelAndAngPOI">
+        <signal name="VelXPoi" start_bit="0" length="16"
+                byte_order="little_endian" signed="true" scale="0.02" offset="0"
+                topic="/vel/x" />
+        <signal name="VelYPoi" start_bit="16" length="16"
+                byte_order="little_endian" signed="true" scale="0.02" offset="0"
+                topic="/vel/y" />
+    </message>
+    <message id="1539" name="AccHor">
+        <signal name="AccXHor" start_bit="0" length="16"
+                byte_order="little_endian" signed="true" scale="0.02" offset="0"
+                topic="/acc/x" />
+    </message>
+</bridge>

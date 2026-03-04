@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<bridge>
+    <message id="1536" name="VelAndAngPOI">
+        <signal name="VelXPoi" start_bit="0" length="16" byte_order="little_endian" signed="true" scale="0.02" offset="0" topic="/velandangpoi/velxpoi"/>
+        <signal name="VelYPoi" start_bit="16" length="16" byte_order="little_endian" signed="true" scale="0.02" offset="0" topic="/velandangpoi/velypoi"/>
+        <signal name="VelAPoi" start_bit="32" length="16" byte_order="little_endian" signed="true" scale="0.02" offset="0" topic="/velandangpoi/velapoi"/>
+        <signal name="AngSPoi" start_bit="48" length="16" byte_order="little_endian" signed="true" scale="0.003" offset="0" topic="/velandangpoi/angspoi"/>
+    </message>
+    <message id="1539" name="AccHor">
+        <signal name="AccXHor" start_bit="0" length="16" byte_order="little_endian" signed="true" scale="0.02" offset="0" topic="/acchor/accxhor"/>
+        <signal name="AccYHor" start_bit="16" length="16" byte_order="little_endian" signed="true" scale="0.02" offset="0" topic="/acchor/accyhor"/>
+        <signal name="AccZHor" start_bit="32" length="16" byte_order="little_endian" signed="true" scale="0.02" offset="0" topic="/acchor/acczhor"/>
+    </message>
+    <message id="1547" name="Status">
+        <signal name="Standstill" start_bit="0" length="1" byte_order="little_endian" signed="false" scale="1" offset="0" topic="/status/standstill"/>
+        <signal name="DirectionNeg" start_bit="1" length="1" byte_order="little_endian" signed="false" scale="1" offset="0" topic="/status/directionneg"/>
+        <signal name="RateAdjustActive" start_bit="2" length="1" byte_order="little_endian" signed="false" scale="1" offset="0" topic="/status/rateadjustactive"/>
+        <signal name="Trigger" start_bit="4" length="1" byte_order="little_endian" signed="false" scale="1" offset="0" topic="/status/trigger"/>
+        <signal name="BrakeAccStatus" start_bit="5" length="3" byte_order="little_endian" signed="true" scale="1" offset="0" topic="/status/brakeaccstatus"/>
+        <signal name="IlluOn" start_bit="8" length="1" byte_order="little_endian" signed="false" scale="1" offset="0" topic="/status/illuon"/>
+        <signal name="IlluOk" start_bit="9" length="1" byte_order="little_endian" signed="false" scale="1" offset="0" topic="/status/illuok"/>
+        <signal name="SensorConnected" start_bit="10" length="1" byte_order="little_endian" signed="false" scale="1" offset="0" topic="/status/sensorconnected"/>
+        <signal name="AdjustmentActive" start_bit="12" length="1" byte_order="little_endian" signed="false" scale="1" offset="0" topic="/status/adjustmentactive"/>
+        <signal name="CanAngAdjFailed" start_bit="13" length="1" byte_order="little_endian" signed="false" scale="1" offset="0" topic="/status/canangadjfailed"/>
+        <signal name="StatusOk" start_bit="15" length="1" byte_order="little_endian" signed="false" scale="1" offset="0" topic="/status/statusok"/>
+        <signal name="TempSensor" start_bit="16" length="16" byte_order="little_endian" signed="true" scale="0.1" offset="0" topic="/status/tempsensor"/>
+        <signal name="SampleTime" start_bit="32" length="24" byte_order="little_endian" signed="true" scale="0.001" offset="0" topic="/status/sampletime"/>
+    </message>
+    <message id="1548" name="Info">
+        <signal name="InfoError" start_bit="0" length="1" byte_order="little_endian" signed="false" scale="1" offset="0" topic="/info/infoerror"/>
+        <signal name="InfoTransversal" start_bit="1" length="1" byte_order="little_endian" signed="false" scale="1" offset="0" topic="/info/infotransversal"/>
+        <signal name="InfoInverseMounting" start_bit="2" length="1" byte_order="little_endian" signed="false" scale="1" offset="0" topic="/info/infoinversemounting"/>
+        <signal name="InfoMovAvgActive" start_bit="3" length="1" byte_order="little_endian" signed="false" scale="1" offset="0" topic="/info/infomovavgactive"/>
+        <signal name="InfoPoi" start_bit="4" length="1" byte_order="little_endian" signed="false" scale="1" offset="0" topic="/info/infopoi"/>
+        <signal name="InfoIlluIncomp" start_bit="6" length="1" byte_order="little_endian" signed="false" scale="1" offset="0" topic="/info/infoilluincomp"/>
+        <signal name="InfoServiceMode" start_bit="7" length="1" byte_order="little_endian" signed="false" scale="1" offset="0" topic="/info/infoservicemode"/>
+        <signal name="LastErrorCode" start_bit="16" length="16" byte_order="little_endian" signed="true" scale="1" offset="0" topic="/info/lasterrorcode"/>
+        <signal name="TempProcessor" start_bit="32" length="8" byte_order="little_endian" signed="true" scale="1" offset="0" topic="/info/tempprocessor"/>
+    </message>
+    <message id="1549" name="StaticInfo">
+        <signal name="SerialEcu" start_bit="0" length="16" byte_order="little_endian" signed="true" scale="1" offset="0" topic="/staticinfo/serialecu"/>
+        <signal name="SerialSensor" start_bit="16" length="16" byte_order="little_endian" signed="true" scale="1" offset="0" topic="/staticinfo/serialsensor"/>
+        <signal name="FwVersion" start_bit="32" length="24" byte_order="little_endian" signed="true" scale="1" offset="0" topic="/staticinfo/fwversion"/>
+        <signal name="ParamSetLoaded" start_bit="56" length="8" byte_order="little_endian" signed="true" scale="1" offset="0" topic="/staticinfo/paramsetloaded"/>
+    </message>
+</bridge>
