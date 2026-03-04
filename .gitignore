@@ -1,0 +1,6 @@
+node/target/
+node/Cargo.lock
+__pycache__/
+*.pyc
+*.egg-info/
+.venv/
