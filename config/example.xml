@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<bridge>
+    <message id="256" name="MotorStatus">
+        <signal name="rpm" start_bit="0" length="16"
+                byte_order="little_endian" scale="0.1" offset="0"
+                topic="/motor/rpm" />
+        <signal name="temperature" start_bit="16" length="8"
+                byte_order="little_endian" scale="1.0" offset="-40"
+                topic="/motor/temperature" />
+    </message>
+    <message id="512" name="BatteryStatus">
+        <signal name="voltage" start_bit="0" length="16"
+                byte_order="little_endian" scale="0.01" offset="0"
+                topic="/battery/voltage" />
+        <signal name="current" start_bit="16" length="16"
+                byte_order="little_endian" scale="0.1" offset="-500"
+                topic="/battery/current" />
+    </message>
+</bridge>

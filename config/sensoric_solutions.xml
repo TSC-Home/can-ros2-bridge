@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<bridge>
+    <message id="1536" name="VelAndAngPOI">
+        <signal name="VelXPoi" start_bit="0" length="16"
+                byte_order="little_endian" signed="true" scale="0.02" offset="0"
+                topic="/vel/x" />
+        <signal name="VelYPoi" start_bit="16" length="16"
+                byte_order="little_endian" signed="true" scale="0.02" offset="0"
+                topic="/vel/y" />
+        <signal name="VelAPoi" start_bit="32" length="16"
+                byte_order="little_endian" signed="true" scale="0.02" offset="0"
+                topic="/vel/abs" />
+        <signal name="AngSPoi" start_bit="48" length="16"
+                byte_order="little_endian" signed="true" scale="0.003" offset="0"
+                topic="/vel/angle" />
+    </message>
+    <message id="1539" name="AccHor">
+        <signal name="AccXHor" start_bit="0" length="16"
+                byte_order="little_endian" signed="true" scale="0.02" offset="0"
+                topic="/acc/x" />
+        <signal name="AccYHor" start_bit="16" length="16"
+                byte_order="little_endian" signed="true" scale="0.02" offset="0"
+                topic="/acc/y" />
+        <signal name="AccZHor" start_bit="32" length="16"
+                byte_order="little_endian" signed="true" scale="0.02" offset="0"
+                topic="/acc/z" />
+    </message>
+    <message id="1547" name="Status">
+        <signal name="Standstill" start_bit="0" length="1"
+                byte_order="little_endian" scale="1" offset="0"
+                topic="/status/standstill" />
+        <signal name="TempSensor" start_bit="16" length="16"
+                byte_order="little_endian" signed="true" scale="0.1" offset="0"
+                topic="/status/temp_sensor" />
+        <signal name="SampleTime" start_bit="32" length="24"
+                byte_order="little_endian" scale="0.001" offset="0"
+                topic="/status/sample_time" />
+    </message>
+</bridge>
