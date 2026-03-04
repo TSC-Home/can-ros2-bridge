@@ -1,0 +1,12 @@
+[Unit]
+Description=CAN to ROS2 Bridge
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/can-ros2-bridge --config /etc/can-ros2-bridge/config.xml --can-interface can0
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
