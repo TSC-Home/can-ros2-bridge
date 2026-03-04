@@ -1,6 +1,16 @@
 [package]
-name = "node"
+name = "can-ros2-bridge"
 version = "0.1.0"
-edition = "2024"
+edition = "2021"
 
 [dependencies]
+clap = { version = "4", features = ["derive"] }
+quick-xml = { version = "0.36", features = ["serialize"] }
+serde = { version = "1", features = ["derive"] }
+socketcan = "3"
+tokio = { version = "1", features = ["full"] }
+r2r = { version = "0.9", optional = true }
+
+[features]
+default = []
+ros2 = ["r2r"]
