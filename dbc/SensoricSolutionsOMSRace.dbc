@@ -41,11 +41,6 @@ BO_ 1536 VelAndAngPOI: 8 SensoricSolutionsOMSRace
  SG_ VelAPoi : 32|16@1- (0.02,0) [0|450] "km/h" SensoricSolutionsOMSRace
  SG_ AngSPoi : 48|16@1- (0.003,0) [-40|40] "°" SensoricSolutionsOMSRace
 
-BO_ 1539 AccHor: 6 SensoricSolutionsOMSRace
- SG_ AccXHor : 0|16@1- (0.02,0) [-200.0|200.0] "m/s^2" SensoricSolutionsOMSRace
- SG_ AccYHor : 16|16@1- (0.02,0) [-200.0|200.0] "m/s^2" SensoricSolutionsOMSRace
- SG_ AccZHor : 32|16@1- (0.02,0) [-200.0|200.0] "m/s^2" SensoricSolutionsOMSRace
-
 BO_ 1547 Status: 7 SensoricSolutionsOMSRace
  SG_ Standstill : 0|1@1+ (1,0) [0|1] "" SensoricSolutionsOMSRace
  SG_ DirectionNeg : 1|1@1+ (1,0) [0|1] "" SensoricSolutionsOMSRace
@@ -84,7 +79,6 @@ BA_DEF_ BO_ "GenMsgCycleTimeus" INT 100 60000000;
 BA_DEF_DEF_  "GenMsgCycleTimeus" 1000;
 
 BA_ "GenMsgCycleTimeus" BO_ 1536 5000;
-BA_ "GenMsgCycleTimeus" BO_ 1539 5000;
 BA_ "GenMsgCycleTimeus" BO_ 1547 5000;
 BA_ "GenMsgCycleTimeus" BO_ 1548 1000000;
 BA_ "GenMsgCycleTimeus" BO_ 1549 1000000;
