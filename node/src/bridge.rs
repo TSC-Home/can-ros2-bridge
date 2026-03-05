@@ -38,8 +38,11 @@ impl Bridge {
         })
     }
 
-    pub fn run(&self) -> Result<(), Box<dyn std::error::Error>> {
+    pub fn run(&mut self) -> Result<(), Box<dyn std::error::Error>> {
         loop {
+            #[cfg(feature = "ros2")]
+            self.ros.spin_once();
+
             if let Some((id, data)) = self.can.read_frame()? {
                 self.process_frame(id, &data)?;
             }

@@ -21,6 +21,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         args.can_interface
     );
 
-    let bridge = can_ros2_bridge::bridge::Bridge::new(config, &args.can_interface)?;
+    let mut bridge = can_ros2_bridge::bridge::Bridge::new(config, &args.can_interface)?;
     bridge.run()
 }

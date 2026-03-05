@@ -2,7 +2,7 @@ use r2r::{self, std_msgs::msg::Float64, QosProfile};
 use std::collections::HashMap;
 
 pub struct RosNode {
-    _node: r2r::Node,
+    node: r2r::Node,
     publishers: HashMap<String, r2r::Publisher<Float64>>,
 }
 
@@ -18,9 +18,13 @@ impl RosNode {
         }
 
         Ok(Self {
-            _node: node,
+            node,
             publishers,
         })
+    }
+
+    pub fn spin_once(&mut self) {
+        self.node.spin_once(std::time::Duration::ZERO);
     }
 
     pub fn publish_value(&self, topic: &str, value: f64) -> Result<(), Box<dyn std::error::Error>> {
